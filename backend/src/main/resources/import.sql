@@ -1,8 +1,8 @@
-INSERT INTO tb_category (name) VALUES ('Books');
-INSERT INTO tb_category (name) VALUES ('Smartphones');
-INSERT INTO tb_category (name) VALUES ('Hardware');
-INSERT INTO tb_category (name) VALUES ('Electronics');
-INSERT INTO tb_category (name) VALUES ('Games');
-INSERT INTO tb_category (name) VALUES ('Consoles');
-INSERT INTO tb_category (name) VALUES ('Movies');
-INSERT INTO tb_category (name) VALUES ('Toys');
+INSERT INTO tb_category (name, created_At) VALUES ('Books', NOW());
+INSERT INTO tb_category (name, created_At) VALUES ('Smartphones', NOW());
+INSERT INTO tb_category (name, created_At) VALUES ('Hardware', NOW());
+INSERT INTO tb_category (name, created_At) VALUES ('Electronics', NOW());
+INSERT INTO tb_category (name, created_At) VALUES ('Games', NOW());
+INSERT INTO tb_category (name, created_At) VALUES ('Consoles', NOW());
+INSERT INTO tb_category (name, created_At) VALUES ('Movies', NOW());
+INSERT INTO tb_category (name, created_At) VALUES ('Toys', NOW());
