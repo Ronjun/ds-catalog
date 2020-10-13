@@ -18,4 +18,4 @@ const ProductPrice = ({price}: Props) => (
     </div>
 );
 
-export default ProductPrice
+export default ProductPrice;
