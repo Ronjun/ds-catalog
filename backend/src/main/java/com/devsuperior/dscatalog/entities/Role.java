@@ -25,7 +25,7 @@ public class Role implements Serializable{
 		this.id = id;
 	}
 
-	public String getAuthoriry() {
+	public String getAuthority() {
 		return authority;
 	}
 

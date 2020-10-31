@@ -19,7 +19,7 @@ public class RoleDTO implements Serializable{
 	
 	public RoleDTO(Role entity) {
 		id = entity.getId();
-		authority = entity.getAuthoriry();
+		authority = entity.getAuthority();
 	}
 	
 	public Long getId() {
