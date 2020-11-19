@@ -1,3 +1,4 @@
+import ProductPrice from 'core/components/ProductPrice';
 import React from 'react';
 import './styles.scss';
 
@@ -12,11 +13,23 @@ const Card = () => {
           className= "product-card-image-admin"
         />   
        </div>
-       <div className="col-7 py-3">
-        <h3> title</h3>
+       <div className="col-7 pt-3">
+        <h3 className="product-card-name=admin"> title</h3>
+        <ProductPrice price = {300}/>
        </div>
-       <div className="col-3 py-3">
-        <h1>action</h1>
+       <div className="col-3 py-3 pr-5">
+        <button
+          type="button"
+          className="btn btn-outline-secondary btn-block border-radius-10 mb-3 btn-edit"
+        >
+          EDITAR
+        </button>
+        <button
+          type="button"
+          className="btn btn-outline-danger btn-block border-radius-10 "
+        >
+          EXCLUIR
+        </button>
        </div>
      </div>
     </div>
