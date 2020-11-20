@@ -14,6 +14,8 @@ const List = () => {
     const params = {
       page: activePage,
       linesPerPage: 6,
+      direction: 'DESC',
+      orderBy: 'id',
     };
     setIsLoading(true);
     makeRequest({ url: "/products", params })
