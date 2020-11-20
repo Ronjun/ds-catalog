@@ -1,7 +1,9 @@
 import ProductPrice from "core/components/ProductPrice";
 import { Product } from "core/types/Product";
+import { makePrivateRequest } from "core/utils/request";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import { toast } from 'react-toastify';
 import "./styles.scss";
 
 type Props = {
@@ -9,6 +11,17 @@ type Props = {
 };
 
 const Card = ({ product }: Props) => {
+  const history = useHistory();
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    return(
+      makePrivateRequest({url:`/products/${product.id}`, method: "DELETE"})
+      .then(() => {
+        toast.error("Produto deletado!");
+        history.push("/admin")
+      })
+    );
+  }
+
   return (
     <div className="card-base product-card-admin">
       <div className="row">
@@ -41,6 +54,7 @@ const Card = ({ product }: Props) => {
           <button
             type="button"
             className="btn btn-outline-danger btn-block border-radius-10 "
+            onClick={handleClick}
           >
             EXCLUIR
           </button>
