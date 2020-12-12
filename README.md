@@ -11,7 +11,8 @@
 </p>
 
 ## Sobre
- DS Catalog procura trazer a experiência completa de um catálogo de produtos para o ambiente da internet. Contém sistema de login, cadastro e recuperação de senha bem como cadastro e exclusão de novos produtos no seu ambiente.
+ DS Catalog procura trazer a experiência completa de um catálogo de produtos para o ambiente da internet. Contém sistema de login, cadastro e recuperação de senha bem como cadastro e exclusão de novos produtos no seu ambiente. <br/>
+ Link do projeto em produção: https://ronjun-dscatalog.netlify.app/ 
 
 <h4 align="center"> 
 	🚧  DS-Catalog -- Em construção...  🚧
