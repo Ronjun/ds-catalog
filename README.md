@@ -3,6 +3,7 @@
 
 <p align="center">
  <a href="#sobre">Sobre</a> •
+ <a href="#imagens"> Imagens </a> •	
  <a href="#instalação">Instalação</a> • 
  <a href="#tecnologias">Tecnologias</a> •  
  <a href="#documentação-da-api">Documentação da API</a> •
@@ -15,6 +16,9 @@
 <h4 align="center"> 
 	🚧  DS-Catalog -- Em construção...  🚧
 </h4>
+
+## Imagens
+![Tela inicial](https://github.com/Ronjun/resources/blob/main/dscatalog/tela1.png) ![catálogo](https://github.com/Ronjun/resources/blob/main/dscatalog/tela2.png) ![login](https://github.com/Ronjun/resources/blob/main/dscatalog/tela3.png)
 
 ## Instalação
 #### Pré-Requisitos
@@ -29,7 +33,8 @@ O servidor será executado em http://localhost:8080
 #### Frontend:
 Acesse a pasta front-web. <br/>
 Instale as dependencias necessárias com o comando `npm install` ou `yarn install` .<br/>
-Execute o comando `npm run start` ou `yarn start` .<br/>
+Execute o comando `npm run start` ou `yarn start` .
+
 ## Tecnologias
 Foram utilizados até o momento:
 #### Backend
@@ -40,8 +45,11 @@ Foram utilizados até o momento:
 #### Frontend
 * TypeScript
 * React
+* Bootstrap
+* Node-sass
 
 ## Documentação da API
 Para acessar a documentação da API basta rodar o app backend localmente e acessar o endereço http://localhost:8080/swagger-ui.html.
+
 ## Licença
 Ver [licença](https://github.com/Ronjun/ds-catalog/blob/main/LICENSE) 
