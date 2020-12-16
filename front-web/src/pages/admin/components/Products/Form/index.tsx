@@ -81,6 +81,7 @@ const Form = () => {
                 className="form-control input-base"
                 name="name"
                 placeholder="Nome do Produto"
+                data-testid="name"
               />
               {errors.name &&(
                 <div className="invalid-feedback d-block">
@@ -89,6 +90,7 @@ const Form = () => {
               )}
             </div>
             <div className="margin-bottom-30">
+              <label htmlFor="categories" className="d-none">Categorias</label>
               <Controller
                 name="categories"
                 rules={{ required: true }}
@@ -100,11 +102,14 @@ const Form = () => {
                 getOptionValue={(option: Category) => String(option.id)} 
                 placeholder="Categorias"
                 classNamePrefix="categories-select"
+                inputId="categories"
+                defaultValue=""
                 isMulti
               />
+              
               {errors.categories && (
                 <div className="invalid-feedback d-block">
-                  Campo obrigatório
+                  Campo Obrigatório
                 </div>
               )}
             </div>
@@ -115,6 +120,7 @@ const Form = () => {
                 className="form-control input-base"
                 name="price"
                 placeholder="Preço"
+                data-testid="price"
               />
               {errors.price &&(
                 <div className="invalid-feedback d-block">
@@ -129,6 +135,7 @@ const Form = () => {
                 className="form-contro input-base"
                 name="imgUrl"
                 placeholder="Url da Imagem"
+                data-testid="imgUrl"
               />
               {errors.imgUrl &&(
                 <div className="invalid-feedback d-block">
@@ -145,6 +152,7 @@ const Form = () => {
               rows={10}
               className="form-control input-base"
               placeholder="Descrição"
+              data-testid="description"
             />
             {errors.description &&(
                 <div className="invalid-feedback d-block">
