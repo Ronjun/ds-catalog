@@ -29,7 +29,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.devsuperior.dscatalog.dto.ProductDTO;
+import com.devsuperior.dscatalog.entities.Category;
 import com.devsuperior.dscatalog.entities.Product;
+import com.devsuperior.dscatalog.repositories.CategoryRepository;
 import com.devsuperior.dscatalog.repositories.ProductRepository;
 import com.devsuperior.dscatalog.services.ProductService;
 import com.devsuperior.dscatalog.services.exceptions.DatabaseException;
@@ -45,12 +47,16 @@ public class ProductServicesTests {
 	@Mock
 	private ProductRepository repository;
 	
+	@Mock
+	private CategoryRepository catRepository;
+	
 	private long existingId;
 	private long nonExistingId;
 	private long dependentId;
 	private Product product;
 	private PageImpl<Product> page;
 	private Pageable pageable;
+	private Category category;
 	
 	@BeforeEach
 	void setUp() throws Exception{
@@ -60,6 +66,7 @@ public class ProductServicesTests {
 		product = ProductFactory.createProduct();
 		page = new PageImpl<>(List.of(product));
 		pageable = PageRequest.of(0, 10);
+		category = new Category(1L,"Casa");
 		
 		when(repository.find(ArgumentMatchers.any(), ArgumentMatchers.anyString(), ArgumentMatchers.any()))
 			.thenReturn(page);
@@ -70,6 +77,7 @@ public class ProductServicesTests {
 		when(repository.findById(nonExistingId)).thenReturn(Optional.empty());
 		
 		when(repository.getOne(existingId)).thenReturn(product);
+		when(catRepository.getOne(existingId)).thenReturn(category);
 		doThrow(EntityNotFoundException.class).when(repository).getOne(nonExistingId);
 		
 		doNothing().when(repository).deleteById(existingId);
