@@ -3,13 +3,17 @@ import { View, Text, ActivityIndicator, Image } from "react-native";
 import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 import { api } from "../services";
 import arrow from "../assets/leftArrow.png";
-import { theme } from "../styles";
+import { text, theme } from "../styles";
+import { useNavigation } from '@react-navigation/native';
 
 const ProductDetails = ({
   route: {
     params: { id },
   },
 }) => {
+
+  const navigation = useNavigation();
+
   const [product, setProduct] = useState({
     id: null,
     name: null,
@@ -33,28 +37,28 @@ const ProductDetails = ({
   }, []);
 
   return (
-    <View>
+    <View style={theme.detailContainer}>
       {loading ? (
         <ActivityIndicator size="large" />
       ) : (
-        <View>
-          <TouchableOpacity>
+        <View style={theme.detailCard}>
+          <TouchableOpacity style={theme.goBackContainer} onPress={() => navigation.goBack()}>
             <Image source={arrow} />
-            <Text>Voltar</Text>
+            <Text style= {text.goBackText}>Voltar</Text>
           </TouchableOpacity>
-          <View>
+          <View style={theme.productImageContainer}>
             <Image
               source={{ uri: product.imgUrl }}
-              style={theme.productImage}
+              style={theme.productDetailsImage}
             />
           </View>
-          <Text>{product.name}</Text>
-          <View>
-            <Text>R$</Text>
-            <Text>{product.price}</Text>
+          <Text style={text.productDetailsName}>{product.name}</Text>
+          <View style={theme.priceContainer}>
+            <Text style={text.currency}>R$</Text>
+            <Text style={text.productPrice}>{product.price}</Text>
           </View>
-          <ScrollView>
-            <Text>{product.description}</Text>
+          <ScrollView style={theme.scrollTextContainer}>
+            <Text style={text.productDescription}>{product.description}</Text>
           </ScrollView>
         </View>
       )}

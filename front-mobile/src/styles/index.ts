@@ -55,6 +55,27 @@ const text = StyleSheet.create({
     fontWeight: "bold",
   },
 
+  goBackText: {
+    fontSize: 19,
+    fontWeight: "bold",
+    textTransform: "uppercase",
+    color: colors.darkGray,
+    margin: 16
+  },
+
+  productDetailsName: {
+    fontSize: 30,
+    fontWeight: "bold",
+    color: colors.darkGray,
+    marginTop: 10,
+  },
+
+  productDescription: {
+    fontSize: 16,
+    color: colors.mediumGray,
+    fontWeight: "400",
+  }
+
 })
 
 const theme = StyleSheet.create({
@@ -182,8 +203,56 @@ const theme = StyleSheet.create({
     width: 140,
     height: 140,
     margin: 16,
-  }
+  },
 
+  //PRODUCT DETAILS
+  detailContainer: {
+    backgroundColor: colors.white,
+    padding: 20, 
+  },
+  detailCard: {
+    width: "100%",
+    height: "100%",
+    backgroundColor: colors.white,
+    borderRadius: 20,
+    justifyContent: "space-around",
+
+    shadowColor: colors.black,
+    shadowOffset: {
+      width: 0,
+      height:2
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+
+    padding: 20,
+  },
+  productImageContainer: {
+    width: '100%',
+    borderWidth: 1,
+    borderColor: colors.lightGray,
+    alignItems: "center",
+    borderRadius: 20,
+  },
+  productDetailsImage: {
+    height: 220,
+    width: 220,
+  },
+  goBackContainer: {
+    width: 290,
+    flexDirection: "row",
+    alignItems: "center",
+    marginVertical: 10,
+    justifyContent: "flex-start",
+  },
+  scrollTextContainer: {
+    marginVertical: 20,
+    padding: 10,
+    borderWidth: 0.5,
+    borderRadius: 10,
+    borderColor: colors.mediumGray,
+
+  },
 });
 
 export { colors, theme, text };
