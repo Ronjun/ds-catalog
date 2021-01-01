@@ -1,9 +1,11 @@
 import { StyleSheet } from "react-native";
+import { color } from "react-native-reanimated";
 
 const colors = {
   white: "#FFF",
   lightGray: "#f2f2f2",
   mediumGray: "#9e9e9e",
+  borderGray: "#e1e1e1",
   darkGray: "#263238",
   black: "#000",
   primary: "#407bee",
@@ -36,6 +38,23 @@ const text = StyleSheet.create({
     marginLeft: 20,
   },
 
+  productName: {
+    fontSize: 16,
+    fontWeight: "bold",
+  },
+
+  currency: {
+    fontSize: 16,
+    fontWeight: "400",
+    color: colors.mediumGray,
+  },
+
+  productPrice: {
+    fontSize: 30,
+    color: colors.primary,
+    fontWeight: "bold",
+  },
+
 })
 
 const theme = StyleSheet.create({
@@ -46,6 +65,7 @@ const theme = StyleSheet.create({
     padding:20,
   },
 
+  //HOME
   card: {
     width: "100%",
     height: "100%",
@@ -93,6 +113,77 @@ const theme = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+
+  scrollContainer: {
+    padding: 10,
+  },
+
+  //CARD
+  productCard: {
+    width: "100%",
+    backgroundColor: colors.white,
+    borderRadius: 10,
+    marginVertical: 10,
+
+    shadowColor: colors.black,
+    shadowOffset: {
+      width: 0,
+      height:2
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+
+    alignItems: "center",
+    justifyContent: "space-around",
+
+  },
+
+  productDescription: {
+    width: "100%",
+    padding: 20,
+    borderTopColor: colors.lightGray,
+    borderTopWidth: 1,
+  },
+
+  priceContainer: {
+    flexDirection: "row",
+    marginTop: 10,
+  },
+
+  //SEARCH INPUT
+  inputContainer: {
+    width: "100%",
+    height: 60,
+    backgroundColor: colors.white,
+    borderRadius: 10,
+    marginVertical: 12.5,
+    paddingVertical: 10,
+
+    shadowColor: colors.black,
+    shadowOffset: {
+      width: 0,
+      height:2
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+
+    alignItems: "center",
+  },
+
+  searchInput: {
+    width: "90%",
+    height: 40,
+    borderBottomWidth: 0.5,
+    borderBottomColor: colors.borderGray,
+  },
+
+  //PRODUCT IMAGE
+  productImage: {
+    width: 140,
+    height: 140,
+    margin: 16,
+  }
+
 });
 
 export { colors, theme, text };
