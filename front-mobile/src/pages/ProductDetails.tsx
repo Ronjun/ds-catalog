@@ -6,11 +6,17 @@ import arrow from "../assets/leftArrow.png";
 import { text, theme } from "../styles";
 import { useNavigation } from '@react-navigation/native';
 
-const ProductDetails = ({
+interface ProductDetailProps {
+  route: any;
+  params: object;
+  id: number;
+}
+
+const ProductDetails  = ({
   route: {
     params: { id },
   },
-}) => {
+}: ProductDetailProps) => {
 
   const navigation = useNavigation();
 
@@ -19,7 +25,7 @@ const ProductDetails = ({
     name: null,
     description: null,
     price: null,
-    imgUrl: null,
+    imgUrl: undefined,
     date: null,
     categories: [],
   });
