@@ -5,3 +5,5 @@ export const api = axios.create({
   baseURL: "https://ronaldo-dscatalog.herokuapp.com",
   
 })
+
+export const TOKEN = 'Basic ZHNjYXRhbG9nOmRzY2F0YWxvZzEyMw==';

@@ -1,6 +1,6 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack'
-import { Home, Catalog, ProductDetails} from '../pages';
+import { Home, Catalog, ProductDetails, Login, Dashboard} from '../pages';
 import { colors, nav } from '../styles';
 import { Text } from "react-native";
 import { NavBar } from '../components';
@@ -9,13 +9,13 @@ const Stack = createStackNavigator();
 
 const HeaderText = () => <Text style={nav.leftText}>DS Catalog</Text>
 
-const Routes: React.FC = () => {
+const Routes = () => {
   return (
     <Stack.Navigator 
       screenOptions={{
        headerTitle: " ",
        headerStyle: {
-         backgroundColor: colors.primary,
+         backgroundColor: colors.primary
        },
        headerLeft: () => <HeaderText /> ,
        headerRight: () => <NavBar />, 
@@ -24,6 +24,8 @@ const Routes: React.FC = () => {
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name="Catalog" component={Catalog} />
       <Stack.Screen name="ProductDetails" component={ProductDetails} />
+      <Stack.Screen name="Login" component={Login} />
+      <Stack.Screen name="Dashboard" component={Dashboard} />
     </Stack.Navigator>
   )
 }

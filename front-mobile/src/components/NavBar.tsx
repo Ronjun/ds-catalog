@@ -1,33 +1,55 @@
-import React, { useState } from 'react';
-import { useNavigation, useRoute } from "@react-navigation/native"
-import menu from '../assets/menu.png';
-import { Image, View, Text, TouchableOpacity} from "react-native";
-import { nav } from '../styles';
+import React, { useEffect, useState } from "react";
+import { useNavigation, useRoute } from "@react-navigation/native";
+import menu from "../assets/menu.png";
+import { Image, View, Text } from "react-native";
+import { nav, text } from "../styles";
+import { TouchableNativeFeedback } from "react-native-gesture-handler";
+import { doLogout, isAuthenticated } from "../services/auth";
 
-const NavBar: React.FC = () => {
-
+const NavBar = () => {
   const [show, setShow] = useState(false);
   const navigation = useNavigation();
   const route = useRoute();
+  const [authenticated, setAuthenticated] = useState(false);
 
-  function navigate(path: any){
-    if(path){
-      setShow(false);
+  function navigate(path: any) {
+    if (path) {
       navigation.navigate(path);
+      setShow(false);
     }
     setShow(false);
   }
 
+  async function logged() {
+    const result = await isAuthenticated();
+
+    result ? setAuthenticated(true) : setAuthenticated(false);
+  }
+
+  function Logout() {
+    doLogout();
+    navigation.navigate("Login");
+  }
+
+  useEffect(() => {
+    logged();
+  }, []);
+
   return (
-    <TouchableOpacity
-          activeOpacity={0.8}
+    <>
+      {authenticated ? (
+        <TouchableNativeFeedback style={nav.logoutBtn} onPress={() => Logout()}>
+          <Text style={text.logoutText}>Sair</Text>
+        </TouchableNativeFeedback>
+      ) : (
+        <TouchableNativeFeedback
           style={nav.drawer}
           onPress={() => setShow(!show)}
         >
           <Image source={menu} />
           {show ? (
             <View style={nav.options}>
-              <TouchableOpacity
+              <TouchableNativeFeedback
                 style={nav.option}
                 onPress={() => navigate("Home")}
               >
@@ -39,8 +61,8 @@ const NavBar: React.FC = () => {
                 >
                   Home
                 </Text>
-              </TouchableOpacity>
-              <TouchableOpacity
+              </TouchableNativeFeedback>
+              <TouchableNativeFeedback
                 style={nav.option}
                 onPress={() => navigate("Catalog")}
               >
@@ -52,24 +74,26 @@ const NavBar: React.FC = () => {
                 >
                   Catálogo
                 </Text>
-              </TouchableOpacity>
-              <TouchableOpacity
+              </TouchableNativeFeedback>
+              <TouchableNativeFeedback
                 style={nav.option}
                 onPress={() => navigate("Login")}
               >
                 <Text
                   style={[
                     nav.textOption,
-                    route.name === "ADM" ? nav.textActive : null,
+                    route.name === "Admin" ? nav.textActive : null,
                   ]}
                 >
-                  ADM
+                  Admin
                 </Text>
-              </TouchableOpacity>
+              </TouchableNativeFeedback>
             </View>
           ) : null}
-        </TouchableOpacity>
-  )
-}
+        </TouchableNativeFeedback>
+      )}
+    </>
+  );
+};
 
 export default NavBar;

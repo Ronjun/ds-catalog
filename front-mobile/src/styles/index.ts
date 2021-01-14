@@ -1,7 +1,6 @@
 import { Dimensions, StyleSheet } from "react-native";
-import { color } from "react-native-reanimated";
 
-const deviceWidth = Dimensions.get('window').width;
+const deviceWidth = Dimensions.get("window").width;
 
 const colors = {
   white: "#FFF",
@@ -23,7 +22,7 @@ const text = StyleSheet.create({
     textAlign: "center",
     color: colors.mediumGray,
   },
-  
+
   bold: {
     fontSize: 26,
     fontWeight: "bold",
@@ -62,7 +61,7 @@ const text = StyleSheet.create({
     fontWeight: "bold",
     textTransform: "uppercase",
     color: colors.darkGray,
-    margin: 16
+    margin: 16,
   },
 
   productDetailsName: {
@@ -76,16 +75,22 @@ const text = StyleSheet.create({
     fontSize: 16,
     color: colors.mediumGray,
     fontWeight: "400",
+  },
+  loginTitle: {
+    fontSize: 30,
+    fontWeight: "400",
+  },
+  logoutText:{
+    color: colors.white,
   }
-
-})
+});
 
 const theme = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    padding:20,
+    padding: 20,
   },
 
   //HOME
@@ -100,11 +105,10 @@ const theme = StyleSheet.create({
     shadowColor: colors.black,
     shadowOffset: {
       width: 0,
-      height:2
+      height: 2,
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
-
   },
 
   draw: {
@@ -124,7 +128,6 @@ const theme = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     borderRadius: 10,
-
   },
 
   arrowContainer: {
@@ -151,14 +154,13 @@ const theme = StyleSheet.create({
     shadowColor: colors.black,
     shadowOffset: {
       width: 0,
-      height:2
+      height: 2,
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
 
     alignItems: "center",
     justifyContent: "space-around",
-
   },
 
   productDescription: {
@@ -185,7 +187,7 @@ const theme = StyleSheet.create({
     shadowColor: colors.black,
     shadowOffset: {
       width: 0,
-      height:2
+      height: 2,
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
@@ -210,7 +212,7 @@ const theme = StyleSheet.create({
   //PRODUCT DETAILS
   detailContainer: {
     backgroundColor: colors.white,
-    padding: 20, 
+    padding: 20,
   },
   detailCard: {
     width: "100%",
@@ -222,7 +224,7 @@ const theme = StyleSheet.create({
     shadowColor: colors.black,
     shadowOffset: {
       width: 0,
-      height:2
+      height: 2,
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
@@ -230,7 +232,7 @@ const theme = StyleSheet.create({
     padding: 20,
   },
   productImageContainer: {
-    width: '100%',
+    width: "100%",
     borderWidth: 1,
     borderColor: colors.lightGray,
     alignItems: "center",
@@ -253,8 +255,54 @@ const theme = StyleSheet.create({
     borderWidth: 0.5,
     borderRadius: 10,
     borderColor: colors.mediumGray,
-
   },
+
+  //LOGIN
+
+  loginCard: {
+    width: "100%",
+    backgroundColor: colors.white,
+    borderRadius: 10,
+    marginVertical: 10,
+
+    shadowColor: colors.black,
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  form: {
+    marginVertical: 10,
+  },
+  passwordContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginVertical: 25,
+  },
+  textInput: {
+    width: 290,
+    height: 50,
+    borderWidth: 1,
+    borderColor: colors.mediumGray,
+    borderRadius: 10,
+    padding: 10,
+  },
+  toggle: {
+    margin: -40,
+  },
+  buttonTextContainer: {
+    flex: 1,
+    alignItems: "center",
+  },
+  eyes: {
+    width: 30,
+    height: 20,
+  }
 });
 
 const nav = StyleSheet.create({
@@ -275,6 +323,7 @@ const nav = StyleSheet.create({
     marginRight: -20,
     padding: 20,
     justifyContent: "space-between",
+    
   },
   option: {
     paddingVertical: 5,
@@ -285,7 +334,17 @@ const nav = StyleSheet.create({
   },
   textActive: {
     fontWeight: "bold",
+  },
+  logoutBtn: {
+    width: 60,
+    height: 30,
+    borderWidth: 1,
+    borderColor: colors.white,
+    borderRadius: 10,
+    alignItems: 'center',
+    justifyContent: "center",
+    marginRight: 20,
   }
-})
+});
 
 export { colors, theme, text, nav };

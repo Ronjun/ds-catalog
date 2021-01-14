@@ -2,12 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { ScrollView, Text } from 'react-native';
 import { ProductCard, SearchInput } from '../components';
 import { api } from '../services';
-import { theme } from '../styles';
+import { text, theme } from '../styles';
+import { Product } from '../types';
 
 
 const Catalog = () => {
   const [search, setSearch] = useState("");
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(false);
 
   async function fillProducts() {
@@ -26,7 +27,7 @@ const Catalog = () => {
   
   return(
     <ScrollView contentContainerStyle={theme.scrollContainer}>
-      <Text>Catálogo de produtos</Text>
+      <Text style={text.bold}>Catálogo de produtos</Text>
       <SearchInput placeholder="Nome do produto" search={search} setSearch={setSearch}/>
      {
        data.map((product) =>(
