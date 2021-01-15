@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ScrollView, Text } from 'react-native';
+import { ActivityIndicator, ScrollView, Text } from 'react-native';
 import { ProductCard, SearchInput } from '../components';
 import { api } from '../services';
 import { text, theme } from '../styles';
@@ -29,10 +29,12 @@ const Catalog = () => {
     <ScrollView contentContainerStyle={theme.scrollContainer}>
       <Text style={text.bold}>Catálogo de produtos</Text>
       <SearchInput placeholder="Nome do produto" search={search} setSearch={setSearch}/>
-     {
+     {loading? (
+       <ActivityIndicator size="large" />
+     ) : (
        data.map((product) =>(
          <ProductCard {...product} key={product.id}/>
-       ))
+       )))
      }
     </ScrollView>
   )

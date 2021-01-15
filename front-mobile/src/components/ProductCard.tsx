@@ -8,9 +8,10 @@ interface ProductProps {
   name: string;
   imgUrl: string;
   price: number;
+  role?: string;
 }
 
-const ProductCard = ({ id, name, imgUrl, price }: ProductProps) => {
+const ProductCard = ({ id, name, imgUrl, price, role }: ProductProps) => {
 
   const navigation = useNavigation();
 
@@ -23,6 +24,18 @@ const ProductCard = ({ id, name, imgUrl, price }: ProductProps) => {
           <Text style={text.currency}>R$ </Text>
           <Text style={text.productPrice}>{price}</Text>
         </View>
+        {
+          role === 'admin' && (
+            <View style={theme.buttonContainer}>
+              <TouchableOpacity style={theme.deleteBtn}>
+                <Text style={text.deleteTxt}>Excluir</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={theme.editBtn}>
+                <Text style={text.editTxt}>Editar</Text>
+              </TouchableOpacity>
+            </View>
+          )
+        }
       </View>
     </TouchableOpacity>
   );
