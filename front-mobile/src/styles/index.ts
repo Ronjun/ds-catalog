@@ -1,6 +1,7 @@
 import { Dimensions, StyleSheet } from "react-native";
 
 const deviceWidth = Dimensions.get("window").width;
+const deviceHeight = Dimensions.get("window").height;
 
 const colors = {
   white: "#FFF",
@@ -97,6 +98,11 @@ const text = StyleSheet.create({
     textTransform: "uppercase",
     fontWeight: "bold",
     color: colors.mediumGray,
+  },
+  saveTxt:{
+    textTransform: "uppercase",
+    fontWeight: "bold",
+    color: colors.white,
   }
 });
 
@@ -342,8 +348,96 @@ const theme = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 10,
+  },
+  //ADMIN PRODUCTS FORM
+  formContainer: {
+    width:deviceWidth,
+    padding: 20,
+  },
+  formCard: {
+    width: "100%",
+    height: "90%",
+    backgroundColor: colors.white,
+    borderRadius: 20,
+    padding: 20,
+    shadowColor: colors.black,
+    shadowOffset:{
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    alignItems: "center",
+    justifyContent: "space-around",
+  },
+  modalContainer:{
+    width: deviceWidth,
+    height: deviceHeight,
+    backgroundColor: "#00000033",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  modalContent:{
+    width: 300,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: "50%",
+    backgroundColor: colors.white,
+    borderRadius: 20,
+    padding: 20,
+    shadowColor: colors.black,
+    shadowOffset:{
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+  modalItem:{
+    width: "100%",
+    backgroundColor: colors.lightGray,
+    marginVertical: 5,
+    padding: 10,
+    borderRadius: 5,
+  },
+  formInput:{
+    width: 290,
+    height: 50,
+    borderWidth: 1,
+    borderColor: colors.mediumGray,
+    borderRadius: 10,
+    padding: 10,
+    marginVertical: 15,
+  },
+  textArea: {
+    width: "100%",
+    borderWidth: 1,
+    borderColor: colors.mediumGray,
+    borderRadius: 10,
+    paddingHorizontal: 15,
+    paddingTop: 15,
+    height: 200,
+  },
+  selectInput: {
+    width: 290,
+    height: 50,
+    borderWidth: 1,
+    borderColor: colors.mediumGray,
+    borderRadius: 10,
+    padding: 10,
+    marginVertical: 15,
+    justifyContent: "center",
+  },
+  saveBtn:{
+    width: "48%",
+    height: 40,
+    marginVertical: 10,
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 10,
+    backgroundColor: colors.primary,
   }
-
 });
 
 const nav = StyleSheet.create({
@@ -385,7 +479,8 @@ const nav = StyleSheet.create({
     alignItems: 'center',
     justifyContent: "center",
     marginRight: 20,
-  }
+  },
+  
 });
 
 const tabBar = StyleSheet.create({

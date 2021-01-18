@@ -5,7 +5,9 @@ import { theme } from "../../styles";
 
 import Categories from './Categories';
 import Users from './Users';
-import Products from './Products';
+import ListProducts from '../Admin/Products/ListProducts';
+import FormProduct from "./Products/FormProduct";
+
 
 const Dashboard = () => {
 
@@ -14,7 +16,8 @@ const Dashboard = () => {
   return (
     <View >
       <TabBar screen={screen} setScreen={setScreen}/>
-      {screen === 'products' && <Products />}
+      {screen === 'products' && <ListProducts setScreen={setScreen}/>}
+      {screen === 'newProduct' && <FormProduct setScreen={setScreen}/>}
       {screen === 'categories' && <Categories />}
       {screen === 'users' && <Users />}
     </View>
