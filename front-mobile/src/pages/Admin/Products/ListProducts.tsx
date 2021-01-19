@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, Text, View } from 'react-native';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import { ProductCard, SearchInput } from '../../../components';
-import { getProducts } from '../../../services';
+import { deleteProduct, getProducts } from '../../../services';
 import { admin, text } from '../../../styles';
 import { Product } from '../../../types';
 
@@ -16,9 +16,19 @@ const ListProducts = ({setScreen}: Props) => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(false);
 
+  async function handleDelete(id:number) {
+    setLoading(true);
+    const res = await deleteProduct(id);
+    fillProducts();
+    setLoading(false);
+
+  }
+
   async function fillProducts() {
+    setLoading(true);
     const res = await getProducts();
     setProducts(res.data.content);
+    setLoading(false);
   }
 
   useEffect(() => {
@@ -40,7 +50,7 @@ const ListProducts = ({setScreen}: Props) => {
        <ActivityIndicator size="large" />
      ) : (
        data.map((product) =>(
-         <ProductCard {...product} key={product.id} role="admin"/>
+         <ProductCard {...product} key={product.id} role="admin" handleDelete={handleDelete}/>
        )))
      }
     </ScrollView>

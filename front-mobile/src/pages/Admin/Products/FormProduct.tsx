@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Toast from 'react-native-tiny-toast';
+import Toast from "react-native-tiny-toast";
 import {
   ActivityIndicator,
   View,
@@ -9,11 +9,7 @@ import {
   TouchableOpacity,
   Alert,
 } from "react-native";
-import {
-  ScrollView,
-  TextInput,
-  TouchableNativeFeedback,
-} from "react-native-gesture-handler";
+import { ScrollView, TextInput } from "react-native-gesture-handler";
 import { Product, Category } from "../../../types";
 import arrow from "../../../assets/leftArrow.png";
 import { text, theme } from "../../../styles";
@@ -37,27 +33,25 @@ const FormProduct = ({ setScreen }: Props) => {
   const [categories, setCategories] = useState<Category[]>([]);
   const [showCategories, setShowCategories] = useState(false);
 
-  function handleSave(){
+  function handleSave() {
     !edit && newProduct();
   }
 
-  async function newProduct(){
+  async function newProduct() {
     setLoading(true);
     const cat = replaceCategory();
-    const data = {...product, categories: [{id: cat}]}
-    try{
+    const data = { ...product, categories: [{ id: cat }] };
+    try {
       await createProduct(data);
-      Toast.showSuccess('Produto salvo com sucesso!')
-    }catch(error){
-      Toast.show("Erro ao salvar...")
+      Toast.showSuccess("Produto salvo com sucesso!");
+    } catch (error) {
+      Toast.show("Erro ao salvar...");
     }
     setLoading(false);
   }
 
-  function replaceCategory(){
-    const cat = categories.find(
-      (category) => category.name 
-    );
+  function replaceCategory() {
+    const cat = categories.find((category) => category.name);
     return cat?.id;
   }
 
@@ -111,7 +105,6 @@ const FormProduct = ({ setScreen }: Props) => {
               <Text style={text.goBackText}>Voltar</Text>
             </TouchableOpacity>
             <TextInput
-              
               style={theme.formInput}
               placeholder="Nome do Produto"
               value={product.name}
@@ -133,35 +126,54 @@ const FormProduct = ({ setScreen }: Props) => {
               style={theme.formInput}
               placeholder="Preço"
               value={product.price}
-              onChangeText={(input)=> setProduct({...product, price: parseFloat(input)})}
+              onChangeText={(input) =>
+                setProduct({ ...product, price: parseFloat(input) })
+              }
             />
-            <TextInput style={theme.formInput} placeholder="URL da imagem" value={product.imgUrl}
-            onChangeText={(input)=> setProduct({...product, imgUrl: input})}/>
+            <TextInput
+              style={theme.formInput}
+              placeholder="URL da imagem"
+              value={product.imgUrl}
+              onChangeText={(input) =>
+                setProduct({ ...product, imgUrl: input })
+              }
+            />
             <TextInput
               style={theme.textArea}
               multiline
               placeholder="Descrição"
               value={product.description}
-            onChangeText={(input)=> setProduct({...product, description: input})}
+              onChangeText={(input) =>
+                setProduct({ ...product, description: input })
+              }
             />
             <View style={theme.buttonContainer}>
-              <TouchableOpacity style={theme.deleteBtn} onPress={()=>{
-                Alert.alert("Deseja cancelar?", "Os dados inseridos não serão salvos",[
-                  {
-                    text: "voltar",
-                    style: 'cancel'
-                  },
-                   {
-                     text: 'confirmar',
-                     onPress: () => setScreen('products'),
-                     style: 'default',
-                   }
-
-                ])
-              }}>
+              <TouchableOpacity
+                style={theme.deleteBtn}
+                onPress={() => {
+                  Alert.alert(
+                    "Deseja cancelar?",
+                    "Os dados inseridos não serão salvos",
+                    [
+                      {
+                        text: "voltar",
+                        style: "cancel",
+                      },
+                      {
+                        text: "confirmar",
+                        onPress: () => setScreen("products"),
+                        style: "default",
+                      },
+                    ]
+                  );
+                }}
+              >
                 <Text style={text.deleteTxt}>Cancelar</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={theme.saveBtn} onPress={() => handleSave()}>
+              <TouchableOpacity
+                style={theme.saveBtn}
+                onPress={() => handleSave()}
+              >
                 <Text style={text.saveTxt}>Salvar</Text>
               </TouchableOpacity>
             </View>

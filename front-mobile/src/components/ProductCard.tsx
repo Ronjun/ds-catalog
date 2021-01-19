@@ -9,14 +9,15 @@ interface ProductProps {
   imgUrl: string;
   price: number;
   role?: string;
+  handleDelete: (id: number) => void;
 }
 
-const ProductCard = ({ id, name, imgUrl, price, role }: ProductProps) => {
+const ProductCard = ({ id, name, imgUrl, price, role, handleDelete }: ProductProps) => {
 
   const navigation = useNavigation();
 
   return (
-    <TouchableOpacity style={theme.productCard} onPress={() => navigation.navigate("ProductDetails", {id})}>
+    <TouchableOpacity style={theme.productCard} onPress={() => role? ' ': navigation.navigate("ProductDetails", {id})}>
       <Image source={{ uri: imgUrl }} style={theme.productImage} />
       <View style={theme.productDescription}>
         <Text style={text.productName}>{name}</Text>
@@ -27,7 +28,7 @@ const ProductCard = ({ id, name, imgUrl, price, role }: ProductProps) => {
         {
           role === 'admin' && (
             <View style={theme.buttonContainer}>
-              <TouchableOpacity style={theme.deleteBtn}>
+              <TouchableOpacity style={theme.deleteBtn} onPress={() => handleDelete(id)}>
                 <Text style={text.deleteTxt}>Excluir</Text>
               </TouchableOpacity>
               <TouchableOpacity style={theme.editBtn}>
