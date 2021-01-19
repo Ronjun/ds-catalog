@@ -7,7 +7,7 @@ export type Product = {
   categories: Category[];
 }
 
-type Category = {
+export type Category = {
   id: number;
   name: string;
 }

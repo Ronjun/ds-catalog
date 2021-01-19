@@ -38,9 +38,56 @@ const NavBar = () => {
   return (
     <>
       {authenticated ? (
-        <TouchableNativeFeedback style={nav.logoutBtn} onPress={() => Logout()}>
-          <Text style={text.logoutText}>Sair</Text>
-        </TouchableNativeFeedback>
+        <View style={{ flexDirection: "row" }}>
+          <TouchableNativeFeedback
+            style={nav.logoutBtn}
+            onPress={() => Logout()}
+          >
+            <Text style={text.logoutText}>Sair</Text>
+          </TouchableNativeFeedback>
+          <TouchableNativeFeedback
+            style={nav.drawer}
+            onPress={() => setShow(!show)}
+          >
+            <Image source={menu} />
+            {show ? (
+              <View style={nav.options}>
+                <TouchableNativeFeedback
+                  style={nav.option}
+                  onPress={() => navigate("Home")}
+                >
+                  <Text
+                    style={[
+                      nav.textOption,
+                      route.name === "Home" ? nav.textActive : null,
+                    ]}
+                  >
+                    Home
+                  </Text>
+                </TouchableNativeFeedback>
+                <TouchableNativeFeedback
+                  style={nav.option}
+                  onPress={() => navigate("Catalog")}
+                >
+                  <Text
+                    style={[
+                      nav.textOption,
+                      route.name === "Catalog" ? nav.textActive : null,
+                    ]}
+                  >
+                    Catálogo
+                  </Text>
+                </TouchableNativeFeedback>
+                <TouchableNativeFeedback
+                  style={nav.option}
+                  onPress={() => navigate("Dashboard")}
+                >
+                  <Text style={nav.textOption}>Admin</Text>
+                </TouchableNativeFeedback>
+              </View>
+            ) : null}
+          </TouchableNativeFeedback>
+        </View>
       ) : (
         <TouchableNativeFeedback
           style={nav.drawer}
@@ -79,14 +126,7 @@ const NavBar = () => {
                 style={nav.option}
                 onPress={() => navigate("Login")}
               >
-                <Text
-                  style={[
-                    nav.textOption,
-                    route.name === "Admin" ? nav.textActive : null,
-                  ]}
-                >
-                  Admin
-                </Text>
+                <Text style={nav.textOption}>Admin</Text>
               </TouchableNativeFeedback>
             </View>
           ) : null}
