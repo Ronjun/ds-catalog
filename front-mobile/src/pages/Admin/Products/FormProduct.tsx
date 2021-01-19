@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Toast from 'react-native-tiny-toast';
 import {
   ActivityIndicator,
   View,
@@ -16,7 +17,7 @@ import {
 import { Product, Category } from "../../../types";
 import arrow from "../../../assets/leftArrow.png";
 import { text, theme } from "../../../styles";
-import { getCategories } from "../../../services";
+import { createProduct, getCategories } from "../../../services";
 
 type Props = {
   setScreen: (args: string) => void;
@@ -36,12 +37,21 @@ const FormProduct = ({ setScreen }: Props) => {
   const [categories, setCategories] = useState<Category[]>([]);
   const [showCategories, setShowCategories] = useState(false);
 
-  function handleSave(){}
+  function handleSave(){
+    !edit && newProduct();
+  }
+
   async function newProduct(){
     setLoading(true);
     const cat = replaceCategory();
-    const data = {...product, categories: {id: cat}}
-    console.warn(data);
+    const data = {...product, categories: [{id: cat}]}
+    try{
+      await createProduct(data);
+      Toast.showSuccess('Produto salvo com sucesso!')
+    }catch(error){
+      Toast.show("Erro ao salvar...")
+    }
+    setLoading(false);
   }
 
   function replaceCategory(){
