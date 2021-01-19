@@ -12,7 +12,7 @@ const Catalog = () => {
   const [loading, setLoading] = useState(false);
 
   async function fillProducts() {
-    const res = await api.get(`/products?page=0&linesPerPage=12&direction=ASC&orderBy=name`);
+    const res = await api.get(`/products?linesPerPage=999999&direction=ASC&orderBy=name`);
     setProducts(res.data.content);
   }
 
@@ -33,7 +33,7 @@ const Catalog = () => {
        <ActivityIndicator size="large" />
      ) : (
        data.map((product) =>(
-         <ProductCard {...product} key={product.id}/>
+         <ProductCard {...product} key={product.id} handleDelete={()=> {}}/>
        )))
      }
     </ScrollView>

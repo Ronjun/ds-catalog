@@ -14,6 +14,8 @@ import { Product, Category } from "../../../types";
 import arrow from "../../../assets/leftArrow.png";
 import { text, theme } from "../../../styles";
 import { createProduct, getCategories } from "../../../services";
+import { TextInputMask } from "react-native-masked-text";
+import { parse } from "query-string";
 
 type Props = {
   setScreen: (args: string) => void;
@@ -27,7 +29,7 @@ const FormProduct = ({ setScreen }: Props) => {
     name: "",
     description: "",
     imgUrl: "",
-    price: 0,
+    price: '',
     categories: [],
   });
   const [categories, setCategories] = useState<Category[]>([]);
@@ -40,7 +42,7 @@ const FormProduct = ({ setScreen }: Props) => {
   async function newProduct() {
     setLoading(true);
     const cat = replaceCategory();
-    const data = { ...product, categories: [{ id: cat }] };
+    const data = { ...product, categories: [{ id: cat }], price: getRaw() };
     try {
       await createProduct(data);
       Toast.showSuccess("Produto salvo com sucesso!");
@@ -60,6 +62,12 @@ const FormProduct = ({ setScreen }: Props) => {
     const res = await getCategories();
     setCategories(res.data.content);
     setLoading(false);
+  }
+
+  function getRaw(){
+    const str = (product.price).toString();
+    const res = str.slice(2).replace(/\./g,'').replace(/,/g, '.');
+    return res;
   }
 
   useEffect(() => {
@@ -122,12 +130,14 @@ const FormProduct = ({ setScreen }: Props) => {
                   : product.categories}
               </Text>
             </TouchableOpacity>
-            <TextInput
+            <TextInputMask
+              type='money'
+              keyboardType={"numeric"}
               style={theme.formInput}
               placeholder="Preço"
               value={product.price}
               onChangeText={(input) =>
-                setProduct({ ...product, price: parseFloat(input) })
+                setProduct({ ...product, price: input })
               }
             />
             <TextInput
