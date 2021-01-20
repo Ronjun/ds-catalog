@@ -11,9 +11,10 @@ interface ProductProps {
   price: string;
   role?: string;
   handleDelete: (id: number) => void;
+  handleEdit: (id: number) => void;
 }
 
-const ProductCard = ({ id, name, imgUrl, price, role, handleDelete }: ProductProps) => {
+const ProductCard = ({ id, name, imgUrl, price, role, handleDelete, handleEdit }: ProductProps) => {
 
   const navigation = useNavigation();
 
@@ -44,7 +45,7 @@ const ProductCard = ({ id, name, imgUrl, price, role, handleDelete }: ProductPro
               <TouchableOpacity style={theme.deleteBtn} onPress={() => handleDelete(id)}>
                 <Text style={text.deleteTxt}>Excluir</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={theme.editBtn}>
+              <TouchableOpacity style={theme.editBtn} onPress={()=> handleEdit(id)}>
                 <Text style={text.editTxt}>Editar</Text>
               </TouchableOpacity>
             </View>

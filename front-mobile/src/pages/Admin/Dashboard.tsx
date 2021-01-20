@@ -7,17 +7,20 @@ import Categories from './Categories';
 import Users from './Users';
 import ListProducts from '../Admin/Products/ListProducts';
 import FormProduct from "./Products/FormProduct";
+import EditProduct from "./Products/EditProduct";
 
 
 const Dashboard = () => {
 
   const [screen, setScreen] = useState('products');
+  const [productId, setProductId] = useState(0);
 
   return (
     <View >
       <TabBar screen={screen} setScreen={setScreen}/>
-      {screen === 'products' && <ListProducts setScreen={setScreen}/>}
+      {screen === 'products' && <ListProducts setScreen={setScreen} setProductId={setProductId}/>}
       {screen === 'newProduct' && <FormProduct setScreen={setScreen}/>}
+      {screen === 'editProduct' && <EditProduct setScreen={setScreen} productId={productId}/>}
       {screen === 'categories' && <Categories />}
       {screen === 'users' && <Users />}
     </View>

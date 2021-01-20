@@ -13,22 +13,27 @@ import { ScrollView, TextInput } from "react-native-gesture-handler";
 import { Product, Category } from "../../../types";
 import arrow from "../../../assets/leftArrow.png";
 import { text, theme } from "../../../styles";
-import { createProduct, getCategories } from "../../../services";
+import {
+  updateProduct,
+  getCategories,
+  getProducts,
+  findById,
+} from "../../../services";
 import { TextInputMask } from "react-native-masked-text";
-import { parse } from "query-string";
 
 type Props = {
   setScreen: (args: string) => void;
+  productId: number;
 };
 
-const FormProduct = ({ setScreen }: Props) => {
+const EditProduct = ({ setScreen, productId }: Props) => {
   const [loading, setLoading] = useState(false);
   const [product, setProduct] = useState<Product>({
     id: 0,
     name: "",
     description: "",
     imgUrl: "",
-    price: '',
+    price: "",
     categories: [],
   });
   const [categories, setCategories] = useState<Category[]>([]);
@@ -36,10 +41,11 @@ const FormProduct = ({ setScreen }: Props) => {
 
   async function handleSave() {
     setLoading(true);
-    const data = { ...product, price: getRaw() };
+
+    const data = { ...product };
     try {
-      await createProduct(data);
-      setScreen('products');
+      await updateProduct(data);
+      setScreen("products");
       Toast.showSuccess("Produto salvo com sucesso!");
     } catch (error) {
       Toast.show("Erro ao salvar...");
@@ -54,14 +60,22 @@ const FormProduct = ({ setScreen }: Props) => {
     setLoading(false);
   }
 
-  function getRaw(){
-    const str = (product.price).toString();
-    const res = str.slice(2).replace(/\./g,'').replace(/,/g, '.');
+  async function loadProduct() {
+    setLoading(true);
+    const res = await findById(productId);
+    setProduct(res.data);
+    setLoading(false);
+  }
+
+  function getRaw(args: any) {
+    const str = args;
+    const res = str.slice(2).replace(/\./g, "").replace(/,/g, ".");
     return res;
   }
 
   useEffect(() => {
     loadCategories();
+    loadProduct();
   }, []);
 
   return (
@@ -79,20 +93,24 @@ const FormProduct = ({ setScreen }: Props) => {
             >
               <View style={theme.modalContainer}>
                 <ScrollView contentContainerStyle={theme.modalContent}>
-                  {categories.map((cat) => {
-                    const {id, name} = cat;
-                    return(
-                    <TouchableOpacity
-                      style={theme.modalItem}
-                      key={id}
-                      onPress={() => {
-                        setProduct({ ...product, categories: [{id, name}]});
-                        setShowCategories(!showCategories);
-                      }}
-                    >
-                      <Text>{name}</Text>
-                    </TouchableOpacity>
-                  )})}
+                  {categories.map((cat: Category) => {
+                    const { id, name } = cat;
+                    return (
+                      <TouchableOpacity
+                        style={theme.modalItem}
+                        key={id}
+                        onPress={() => {
+                          setProduct({
+                            ...product,
+                            categories: [{ id, name }],
+                          });
+                          setShowCategories(!showCategories);
+                        }}
+                      >
+                        <Text>{name}</Text>
+                      </TouchableOpacity>
+                    );
+                  })}
                 </ScrollView>
               </View>
             </Modal>
@@ -114,23 +132,17 @@ const FormProduct = ({ setScreen }: Props) => {
               onPress={() => setShowCategories(!showCategories)}
               style={theme.selectInput}
             >
-              <Text
-                style={product?.categories.length === 0 ? { color: "#9e9e9e" } : {color: '#000'}}
-              >
-                {product.categories.length === 0
-                  ? "Escolha uma categoria"
-                  : product.categories.length > 0 && product.categories[0].name}
+              <Text>
+                {product.categories.length > 0 && product.categories[0].name}
               </Text>
             </TouchableOpacity>
             <TextInputMask
-              type='money'
+              type="money"
               keyboardType={"numeric"}
               style={theme.formInput}
               placeholder="Preço"
               value={product.price}
-              onChangeText={(input) =>
-                setProduct({ ...product, price: input })
-              }
+              onChangeText={(input) => setProduct({ ...product, price: getRaw(input) })}
             />
             <TextInput
               style={theme.formInput}
@@ -186,4 +198,4 @@ const FormProduct = ({ setScreen }: Props) => {
   );
 };
 
-export default FormProduct;
+export default EditProduct;

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ActivityIndicator, Text, View } from 'react-native';
+import { ActivityIndicator, Alert, Text, View } from 'react-native';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import { ProductCard, SearchInput } from '../../../components';
 import { deleteProduct, getProducts } from '../../../services';
@@ -8,21 +8,44 @@ import { Product } from '../../../types';
 
 type Props= {
   setScreen: (args: string) => void;
+  setProductId: (id:number) => void
 }
 
-const ListProducts = ({setScreen}: Props) => {
+const ListProducts = ({setScreen, setProductId}: Props) => {
 
   const [search, setSearch] = useState("");
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(false);
+  
 
   async function handleDelete(id:number) {
     setLoading(true);
-    const res = await deleteProduct(id);
-    fillProducts();
+    Alert.alert(
+      "Deseja Excluir",
+      "Os dados serão deletados permanentemente",
+      [
+        {
+          text: "voltar",
+          style: "cancel",
+        },
+        {
+          text: "confirmar",
+          onPress: async () => {
+            await deleteProduct(id);
+            fillProducts();
+          },
+          style: "default",
+        },
+      ]
+    );
     setLoading(false);
-
   }
+
+  function handleEdit(id: number) {
+    setProductId(id);
+    setScreen("editProduct");
+  }
+
 
   async function fillProducts() {
     setLoading(true);
@@ -33,7 +56,7 @@ const ListProducts = ({setScreen}: Props) => {
 
   useEffect(() => {
     fillProducts();
-  }, [])
+  }, [deleteProduct])
 
   const data = search.length > 0 ?
     products.filter((product) =>
@@ -50,7 +73,7 @@ const ListProducts = ({setScreen}: Props) => {
        <ActivityIndicator size="large" />
      ) : (
        data.map((product) =>(
-         <ProductCard {...product} key={product.id} role="admin" handleDelete={handleDelete}/>
+         <ProductCard {...product} key={product.id} role="admin" handleDelete={handleDelete} handleEdit={handleEdit}/>
        )))
      }
     </ScrollView>

@@ -33,7 +33,7 @@ const Catalog = () => {
        <ActivityIndicator size="large" />
      ) : (
        data.map((product) =>(
-         <ProductCard {...product} key={product.id} handleDelete={()=> {}}/>
+         <ProductCard {...product} key={product.id} handleDelete={()=> {}} handleEdit={()=> {}}/>
        )))
      }
     </ScrollView>
