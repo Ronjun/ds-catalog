@@ -19,7 +19,7 @@
 </h4>
 
 ## Imagens
-![Tela inicial](https://github.com/Ronjun/resources/blob/main/dscatalog/tela1.png) ![catálogo](https://github.com/Ronjun/resources/blob/main/dscatalog/tela2.png) ![login](https://github.com/Ronjun/resources/blob/main/dscatalog/tela3.png)
+![catálogo](https://github.com/Ronjun/resources/blob/main/dscatalog/tela2.png) ![login](https://github.com/Ronjun/resources/blob/main/dscatalog/tela3.png)
 
 ## Instalação
 #### Pré-Requisitos
